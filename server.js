@@ -23,7 +23,12 @@ app.listen(port,()=>{
     console.log(`server is running on port ${port}` );
 })
 
+app.get('/',(req,res)=>{
+    res.render('index.ejs');
+})
+
+
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use("/blogs",blogRoutes);
+app.use("blogs",blogRoutes);

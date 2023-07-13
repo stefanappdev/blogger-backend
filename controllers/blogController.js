@@ -29,7 +29,6 @@ const DELETE_BLOG=(req,res)=>{
 }
 
 const POST_BLOG=(req,resp)=>{
-    
     const blog=new Blog(req.body);
     console.log(blog)
     blog.save()

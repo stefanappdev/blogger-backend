@@ -3,15 +3,15 @@ const app=express();
 const port=5000;
 const mongoose=require('mongoose');
 const blogRoutes=require('./routes/blogRoutes.js');
+const dotenv=require('dotenv').config();
 app.set('view engine','ejs');
 
 const cors=require('cors')
-app.use(cors({origin:'http://localhost:3000'}));
+app.use(cors({origin:['http://localhost:3000','https://simple-blogger-app.onrender.com']}));
 
 
 const connect=()=>{
-    let dbURI='mongodb+srv://ailifeadvice2:6BWn4dj2lHbvnskD@nodetuts.okywb1x.mongodb.net/?retryWrites=true&w=majority';
-    mongoose.connect(dbURI);
+    mongoose.connect(process.env.MONGO_URI);
     console.log("Database is connected")
 }
 

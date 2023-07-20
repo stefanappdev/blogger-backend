@@ -1,5 +1,9 @@
-const Blog=require('../models/Blog');
+const mongoose=require('mongoose');
+const BlogSchema=require('../Schemas/Blog');
+const dotenv=require('dotenv').config()
 
+const DB=mongoose.createConnection(process.env.MONGO_URI)
+const Blog=DB.model('blog',BlogSchema)
 
 const GET_BLOGS=(req,res)=>{
     Blog.find()
@@ -29,7 +33,7 @@ const DELETE_BLOG=(req,res)=>{
 }
 
 const POST_BLOG=(req,resp)=>{
-    const blog=new Blog(req.body);
+    const blog=new Blog(req.body)
     console.log(blog)
     blog.save()
     .then((result)=>{
